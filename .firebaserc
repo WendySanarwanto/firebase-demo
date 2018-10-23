@@ -1,6 +1,5 @@
 {
   "projects": {
-    "staging": "wendysa-ionic-shopping-list",
-    "shoppingList": "wendysa-ionic-shopping-list"
+    "development": "wendysa-firebase-demo"
   }
 }
