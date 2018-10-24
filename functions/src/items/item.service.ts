@@ -1,7 +1,7 @@
 import * as admin from 'firebase-admin';
 
 import { ItemRepository } from './item.repository';
-import { Response } from '../shared/service.response';
+import { Response } from '../shared/response';
 import { Item } from './item.model';
 
 export class ItemService {
