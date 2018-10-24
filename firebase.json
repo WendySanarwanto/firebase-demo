@@ -7,8 +7,8 @@
     "source": "functions"
   },
   "hosting": {
-    "predeploy": "npm --prefix ./clients/sign-in-app run build",
-    "public": "dist",
+    "predeploy": "npm --prefix ./clients/sign-in-app run buildprod",
+    "public": "clients/sign-in-app/dist/sign-in-app",
     "ignore": [
       "firebase.json",
       "**/.*",

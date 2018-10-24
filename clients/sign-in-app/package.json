@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod && rm -rf ../../dist/** && cp dist/sign-in-app/** ../../dist",
+    "build": "ng build",
+    "buildprod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
