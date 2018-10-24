@@ -1,5 +1,6 @@
 import * as express from 'express';
-import { ItemService } from './item.service';
+
+import { ItemService } from '.';
 import { Response } from '../shared';
 
 export const ItemsRouter = express.Router();

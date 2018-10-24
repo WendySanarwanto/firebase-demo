@@ -1,8 +1,7 @@
 import * as admin from 'firebase-admin';
 
-import { ItemRepository } from './item.repository';
-import { Response } from '../shared/response';
-import { Item } from './item.model';
+import { Item, ItemRepository } from '.';
+import { Response } from '../shared';
 
 export class ItemService {
   async addItem(newItem: Item = null): Promise<Response>{

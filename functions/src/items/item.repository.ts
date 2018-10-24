@@ -1,6 +1,7 @@
 
-import { Item } from './item.model';
 import * as admin from 'firebase-admin';
+
+import { Item } from '.';
 
 export const ITEM_COLLECTION_NAME = 'shopping-list';
 
