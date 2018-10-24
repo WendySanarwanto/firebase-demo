@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MdlModule } from '@angular-mdl/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +11,8 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
+    MdlModule,
+    FormsModule,
     BrowserModule,
     AppRoutingModule
   ],
