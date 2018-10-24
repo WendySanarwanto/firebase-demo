@@ -1,5 +1,6 @@
 {
   "projects": {
-    "development": "wendysa-firebase-demo"
+    "development": "wendysa-firebase-demo",
+    "default": "wendysa-firebase-demo"
   }
 }
