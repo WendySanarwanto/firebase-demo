@@ -13,20 +13,9 @@
     <div class="mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
       <div class="mdl-cell mdl-cell--4-col"></div>
       
-      <!-- child component #1 -->
-      <mdl-card id="demo-signed-out-card" mdl-shadow="2" mdl-cell="4-col" mdl-min-height="0" style="min-height:0;">
-        <mdl-card-supporting-text mdl-color-text="grey-600">
-          <p>
-            This web application demonstrates how you can send an authorized XHR Request to an HTTPS Function.
-            <strong>Now sign in!</strong>
-          </p>
-          <button id="demo-sign-in-button" 
-                  class="mdl-color-text--grey-700 mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect">
-            <i class="material-icons">account_circle</i> 
-            Sign in with Google
-          </button>          
-        </mdl-card-supporting-text>
-      </mdl-card>
+      <app-sign-in-card></app-sign-in-card>
+
+      <!-- TODO: Add sign out component -->
 
       <!-- <router-outlet></router-outlet> -->
     </div>

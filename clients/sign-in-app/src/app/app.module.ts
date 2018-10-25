@@ -10,10 +10,12 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthService } from './services';
+import { SignInCardComponent } from './sign-in-card/sign-in-card.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SignInCardComponent
   ],
   imports: [
     MdlModule,
