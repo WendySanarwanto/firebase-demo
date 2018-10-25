@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { AuthService } from '../services';
 
 @Component({
@@ -8,17 +7,22 @@ import { AuthService } from '../services';
   styleUrls: ['./sign-in-card.component.css']
 })
 export class SignInCardComponent implements OnInit {
-  // TODO: Inject Auth service on the constructor's arg
   constructor(private _auth: AuthService) { }
 
   ngOnInit() { }
 
   isLoggedIn() {
-    // TODO: Call auth service's isLogged in to determine whether the user is authenticated or not
     return this._auth.isLoggedIn();
   }
 
-  onSignInClicked() {
-    alert(`Not implemented !`);
+  async onSignInClicked() {
+    try {
+      await this._auth.signInWithGoogle();
+    } catch (err) {
+      const errMsg = `Sign in error: ${err.message}`;
+      console.log(`[ERROR] - <SignInCardComponent.onSignInClicked> Details: \n`, err);
+      // TODO: Replace alert with Error Toaster/Band
+      alert(errMsg);
+    }
   }
 }

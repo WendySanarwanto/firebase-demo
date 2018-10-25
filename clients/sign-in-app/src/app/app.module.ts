@@ -11,11 +11,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthService } from './services';
 import { SignInCardComponent } from './sign-in-card/sign-in-card.component';
+import { SignOutCardComponent } from './sign-out-card/sign-out-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignInCardComponent
+    SignInCardComponent,
+    SignOutCardComponent
   ],
   imports: [
     MdlModule,
