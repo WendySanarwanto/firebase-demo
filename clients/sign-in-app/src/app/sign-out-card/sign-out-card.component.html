@@ -1,17 +1,22 @@
-<mdl-card id="demo-signed-out-card" mdl-shadow="2" mdl-cell="4-col" mdl-min-height="0" 
-          style="min-height:0;" *ngIf="isLoggedIn()">
-  <mdl-card-supporting-text mdl-color-text="grey-600">
-    <p>
-      Authorized Header:
-      <br>
-      <span>Bearer {{accessToken | async}}</span>
-      <!-- TODO: Add button to copy access token string into clipboard -->
-    </p>
-    <button id="demo-sign-in-button" 
-            class="mdl-color-text--grey-700 mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect"
-            (click)="onSignOutClicked()">
-      <i class="material-icons">exit_to_app</i> 
-      Sign out.
-    </button>
-  </mdl-card-supporting-text>
-</mdl-card>
+<div class="mdl-grid mdl-cell--12-col mdl-cell--12-col-tablet" *ngIf="isLoggedIn()">
+  <div class="mdl-layout-spacer"></div>
+  <mdl-card id="demo-signed-out-card" mdl-shadow="2" mdl-min-height="0" 
+            style="min-height:0;" class="mdl-cell--6-col">
+    <mdl-card-supporting-text mdl-color-text="grey-600">
+      <p>
+        Authorized Header:
+        <br>
+        <textarea rows="18" cols="200" readonly class="mdl-textfield__input">{{accessToken | async}}</textarea>
+        <!-- <span>{{accessToken | async}}</span> -->
+        <!-- TODO: Add button to copy access token string into clipboard -->
+      </p>
+      <button id="demo-sign-in-button" 
+              class="mdl-color-text--grey-700 mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect"
+              (click)="onSignOutClicked()">
+        <i class="material-icons">exit_to_app</i> 
+        Sign out.
+      </button>
+    </mdl-card-supporting-text>
+  </mdl-card>
+  <div class="mdl-layout-spacer"></div>
+</div>

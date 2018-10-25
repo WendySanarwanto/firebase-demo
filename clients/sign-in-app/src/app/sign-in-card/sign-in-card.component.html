@@ -1,15 +1,19 @@
-<mdl-card id="demo-signed-out-card" mdl-shadow="2" mdl-cell="4-col" mdl-min-height="0" 
-          style="min-height:0;" *ngIf="!isLoggedIn()">
-  <mdl-card-supporting-text mdl-color-text="grey-600">
-    <p>
-      This web application demonstrates how you can send an authorized XHR Request to an HTTPS Function.
-      <strong>Now sign in!</strong>
-    </p>
-    <button id="demo-sign-in-button" 
-            class="mdl-color-text--grey-700 mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect"
-            (click)="onSignInClicked()">
-      <i class="material-icons">account_circle</i> 
-      Sign in with Google
-    </button>          
-  </mdl-card-supporting-text>
-</mdl-card>
+<div class="mdl-grid mdl-cell--12-col mdl-cell--12-col-tablet" *ngIf="!isLoggedIn()">
+  <div class="mdl-layout-spacer"></div>
+  <mdl-card id="demo-signed-out-card" mdl-shadow="2" mdl-min-height="0" 
+            style="min-height:0;" class="mdl-cell--3-col" >
+    <mdl-card-supporting-text mdl-color-text="grey-600">
+      <p>
+        This web application demonstrates how you can send an authorized XHR Request to an HTTPS Function.
+        <strong>Now sign in!</strong>
+      </p>
+      <button id="demo-sign-in-button" 
+              class="mdl-color-text--grey-700 mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect"
+              (click)="onSignInClicked()">
+        <i class="material-icons">account_circle</i> 
+        Sign in with Google
+      </button>          
+    </mdl-card-supporting-text>
+  </mdl-card>
+  <div class="mdl-layout-spacer"></div>
+</div>
