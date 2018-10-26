@@ -6,8 +6,7 @@
       <p>
         Authorized Header:
         <br>
-        <textarea rows="18" cols="200" readonly class="mdl-textfield__input">{{accessToken | async}}</textarea>
-        <!-- <span>{{accessToken | async}}</span> -->
+        <textarea rows="18" cols="200" readonly class="mdl-textfield__input">{{getAccessToken()}}</textarea>
         <!-- TODO: Add button to copy access token string into clipboard -->
       </p>
       <button id="demo-sign-in-button" 

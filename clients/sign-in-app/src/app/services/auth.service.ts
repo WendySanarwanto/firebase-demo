@@ -3,12 +3,15 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import { Observable, Subscription } from 'rxjs';
 
+const TOKEN_NOT_AVAILABLE = 'Not available';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
+  private accessToken: string = TOKEN_NOT_AVAILABLE;
 
   constructor(private _firebaseAuth: AngularFireAuth) {
     this.user = this._firebaseAuth.authState;
@@ -16,8 +19,11 @@ export class AuthService {
       user => {
         if (user) {
           this.userDetails = user;
+          this.userDetails.getIdToken()
+            .then(accessToken => this.accessToken = accessToken ? accessToken : TOKEN_NOT_AVAILABLE);
         } else {
           this.userDetails = null;
+          this.accessToken = null;
         }
       }
     );
@@ -45,6 +51,10 @@ export class AuthService {
 
   logout() {
     return this._firebaseAuth.auth.signOut();
+  }
+
+  getAccessToken() {
+    return this.accessToken;
   }
 
   subscribeToUserObject(subscriberFn: (user: firebase.User) => any): Subscription {
