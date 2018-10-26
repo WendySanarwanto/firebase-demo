@@ -4,6 +4,6 @@ export interface ErrorInfo {
 }
 
 export interface Response {
-  result: string | object;
+  result?: string | object;
   error?: ErrorInfo;
 }

@@ -3,6 +3,7 @@ import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 
 import { ItemsRouter } from './items';
+import { authenticate } from './middlewares';
 
 // Initialise Firebase app & suppress a default warning when accessing firestore later.
 admin.initializeApp();    
@@ -13,6 +14,7 @@ firestore.settings({ timestampsInSnapshots: true });
 const app = express();
 
 // TODO: Initialise required express middlewares
+app.use(authenticate);
 
 // TODO: Add more required routes
 app.use(`/items`, ItemsRouter);
