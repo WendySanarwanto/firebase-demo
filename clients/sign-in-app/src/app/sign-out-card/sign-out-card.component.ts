@@ -17,8 +17,9 @@ export class SignOutCardComponent implements OnInit, OnDestroy {
   constructor(private _auth: AuthService) { }
 
   ngOnInit() {
-    this.subscriptionToAuthSvc = this._auth.subscribeToUserObject(user => {
-      this.accessToken = user ? user.getIdToken() : Promise.resolve(TOKEN_NOT_AVAILABLE);
+    this.subscriptionToAuthSvc = this._auth.subscribeToUserObject(async(user) => {
+      let accessToken = user ? await user.getIdToken() : null;
+      this.accessToken = Promise.resolve(accessToken !== null ? `Bearer ${accessToken}` : TOKEN_NOT_AVAILABLE);
     });
   }
 
