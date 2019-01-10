@@ -2,6 +2,16 @@ import * as admin from 'firebase-admin';
 
 import { ItemService, Item } from '..';
 
+const GET_ALL_ITEMS_MOCKED_RESULT = [{
+    "price": 150,
+    "quantity": 1,
+    "name": "iPhone 5c"
+  },{
+    "price": 300,
+    "quantity": 1,
+    "name": "Samsung Galaxy S4"
+}];
+
 jest.mock(`../item.repository`, () => {
   return {
     ItemRepository: function() {
@@ -24,6 +34,11 @@ jest.mock(`../item.repository`, () => {
             // Docum  entReference: null,
           };
           return fakeWriteResult;
+        }),
+        getAll: jest.fn(() => {
+          return {
+            result: GET_ALL_ITEMS_MOCKED_RESULT
+          }
         })
       };
     }
@@ -53,6 +68,24 @@ describe(`ItemService`, () =>{
     itemService.addItem()
       .catch(error => {
         expect(error).toBeDefined();
+        done();
+      });
+  });
+
+  it(`returns items from firestore`, (done) => {
+    const itemService = new ItemService();
+    itemService.getAllItems()
+      .then(response => {
+        expect(response).toBeDefined();
+        console.log(`[DEBUG] - <itemServiceSpec> response.result.result: \n`, response.result["result"]);
+        expect(response.result).toBeTruthy();
+        expect(Array.isArray(response.result["result"])).toBeTruthy();
+        const dataResults = <any[]> response.result["result"];
+        let countResult = 0;
+        for(const data of dataResults) {
+          expect(data).toMatchSnapshot(GET_ALL_ITEMS_MOCKED_RESULT[countResult]);
+          countResult++;
+        }
         done();
       });
   });

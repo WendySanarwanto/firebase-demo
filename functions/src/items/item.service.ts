@@ -17,8 +17,14 @@ export class ItemService {
     }
 
     const repository: ItemRepository = new ItemRepository();
-    const writeResult: admin.firestore.DocumentReference = await repository.create(newItem);      
-      
-    return { result: `Item with ID: ${writeResult.id} added.` };
+    const insertedDoc = await repository.create(newItem);
+    return { result: `Item with ID: ${insertedDoc.id} added.`};
+  }
+
+
+  public async getAllItems(): Promise<Response> {
+    const repository: ItemRepository = new ItemRepository();
+    const readAllResult: Array<admin.firestore.DocumentData> = await repository.getAll();
+    return { result: readAllResult };
   }
 }

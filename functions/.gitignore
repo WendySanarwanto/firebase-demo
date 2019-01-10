@@ -13,3 +13,6 @@ lib/
 
 # Ignore coverage folder
 coverage/
+
+# Ignore Jest's snapshot(s)
+*.snap

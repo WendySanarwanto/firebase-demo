@@ -3,7 +3,7 @@ import * as request from 'supertest';
 import * as bodyParser from 'body-parser';
 
 import { authenticate } from '../auth.middleware';
-import { Item, ItemsRouter, POST_PATH } from '../../items';
+import { Item, ItemsRouter, ITEM_POST_PATH } from '../../items';
 
 const app = express();
 app.use(bodyParser.json());
@@ -64,7 +64,7 @@ describe(`Auth Middleware`, () => {
 
   it(`rejects unauthorised HTTP Request to Item's endpoints`, (done) => {
     request(app)
-      .post(POST_PATH)
+      .post(ITEM_POST_PATH)
       .send(item)
       .set(`Accept`, 'application/json')
       .expect(403)
@@ -76,7 +76,7 @@ describe(`Auth Middleware`, () => {
 
   it(`rejects HTTP Request with non-Bearer auth token, to Item's endpoints`, (done)=>{
     request(app)
-      .post(POST_PATH)
+      .post(ITEM_POST_PATH)
       .send(item)
       .set(`Accept`, 'application/json')
       .set(`Authorization`, `basic 123456`)
@@ -89,7 +89,7 @@ describe(`Auth Middleware`, () => {
 
   it(`pass HTTP Request with valid access token, to Item's endpoints`, (done) => {
     request(app)
-      .post(POST_PATH)
+      .post(ITEM_POST_PATH)
       .send(item)
       .set(`Accept`, 'application/json')
       .set(`Authorization`, `Bearer 123456`)
@@ -104,7 +104,7 @@ describe(`Auth Middleware`, () => {
   it(`rejects HTTP Request with invalid auth token, to Item's endpoints`, (done) => {
     const VALID_ACCESS_TOKEN = "ADGHBG76LOI898";
     request(app)
-    .post(POST_PATH)
+    .post(ITEM_POST_PATH)
     .send(item)
     .set(`Accept`, 'application/json')
     .set(`Authorization`, `Bearer ${VALID_ACCESS_TOKEN}`)
