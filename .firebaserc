@@ -1,6 +1,7 @@
 {
   "projects": {
+    "default": "wendysa-firebase-demo",
     "development": "wendysa-firebase-demo",
-    "default": "wendysa-firebase-demo"
+    "uat": "wendy-firebase-demo-uat"
   }
 }

@@ -1,6 +1,15 @@
 ## Compiled JavaScript files
-**/*.js
-**/*.js.map
+# **/*.js
+# **/*.js.map
 
 # Typescript v1 declaration files
 typings/
+
+# # include JEST Config file
+# !./jest.config.js
+
+# Ignore built artefacts
+lib/
+
+# Ignore coverage folder
+coverage/

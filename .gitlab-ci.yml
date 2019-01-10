@@ -1,0 +1,65 @@
+# Node docker image on which our code would run
+image: node:8.12
+
+stages:
+  - test_uat
+  - deploy_uat
+  - publish_functions_coverage_uat
+
+test_functions_of_uat_branch:
+  stage: test_uat
+  before_script:
+    - npm --prefix ./functions install
+  cache:
+    untracked: true
+  only:
+    - uat
+  script:
+    - npm --prefix ./functions run test
+  
+deploy_functions_to_uat_env:
+  stage: deploy_uat
+  before_script:
+    - npm i -g firebase-tools    
+    - firebase use --token $FIREBASE_DEPLOY_TOKEN uat
+    # - firebase functions:delete doRecordSignUpEvent --region us-central1
+  cache:
+    untracked: true
+    policy: pull  
+  only:
+    - uat  
+  script:
+    - firebase deploy -m "Pipeline $CI_PIPELINE_ID, build $CI_BUILD_ID" --non-interactive --token $FIREBASE_DEPLOY_TOKEN --only functions
+  artifacts:
+    paths:
+      - functions/coverage/lcov-report/
+
+pages:
+  stage: publish_functions_coverage_uat
+  dependencies:
+    - deploy_functions_to_uat_env
+  artifacts:
+    paths:
+      - public/
+    expire_in: 3 days
+  only:
+    - uat
+  script:
+    # - cp -R ./functions/coverage/lcov-report/** public/    
+    - mv functions/coverage/lcov-report/ public/
+
+deploy sign-in-app for uat:
+  stage: deploy_uat
+  before_script:
+    - npm i -g firebase-tools    
+    - firebase use --token $FIREBASE_DEPLOY_TOKEN uat
+    - npm i -g @angular/cli
+    - npm --prefix ./clients/sign-in-app install
+  cache:
+    untracked: true
+    policy: pull
+  only:
+    - uat
+  script:
+    - npm --prefix ./clients/sign-in-app run builduat
+    - firebase deploy -m "Pipeline $CI_PIPELINE_ID, build $CI_BUILD_ID" --non-interactive --token $FIREBASE_DEPLOY_TOKEN --only hosting
