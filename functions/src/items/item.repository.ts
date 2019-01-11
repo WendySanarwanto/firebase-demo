@@ -2,7 +2,7 @@
 import { BaseRepository } from '../shared/base.repository';
 import { Item } from '.';
 
-export const ITEM_COLLECTION_NAME = 'shopping-list';
+export const ITEM_COLLECTION_NAME = 'product-items-list';
 
 export class ItemRepository extends BaseRepository<Item> {
   constructor() { 
