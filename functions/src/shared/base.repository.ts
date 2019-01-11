@@ -5,8 +5,8 @@ export class BaseRepository<TDoc extends admin.firestore.DocumentData> {
   typeId = "BaseRepository";
 
   constructor(
-    private collectionName: string, 
-    private _firestore: admin.firestore.Firestore = admin.firestore()) { }
+    protected collectionName: string, 
+    protected _firestore: admin.firestore.Firestore = admin.firestore()) { }
 
   create(newDoc: TDoc = null): Promise<admin.firestore.DocumentReference>{
     console.log(`[DEBUG] - <${this.typeId}.create> newDoc: \n`, newDoc);
@@ -23,6 +23,7 @@ export class BaseRepository<TDoc extends admin.firestore.DocumentData> {
     if (!getAllQuerySnapshot.empty) {
       const allData: Array<admin.firestore.DocumentData> = getAllQuerySnapshot.docs.map(docSnapshot => {         
         const data = docSnapshot.data();
+        // console.log(`[DEBUG] - <BaseRepository.TypeId: ${this.typeId}> data: \n`, data);
         const _item: admin.firestore.DocumentData = {
           id: docSnapshot.id,
           ...data
