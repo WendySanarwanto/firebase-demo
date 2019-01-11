@@ -45,7 +45,7 @@ describe(`BaseRepository`, () => {
     mockfirestore.flush();
   });
 
-  it(`allows inserting null item`, async () => {
+  it(`returns null when inserting null item`, async () => {
     const repo: BaseRepository<TestData> = new BaseRepository(COLLECTION_NAME);
     const createResult = await repo.create();
     expect(createResult).toBeNull();
