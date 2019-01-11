@@ -13,6 +13,7 @@ export class BaseRepository<TDoc extends admin.firestore.DocumentData> {
     if ( (newDoc === null) || (!newDoc) ) {
       return null;
     }
+
     return this._firestore.collection(this.collectionName).add(newDoc);
   }
 
@@ -20,7 +21,14 @@ export class BaseRepository<TDoc extends admin.firestore.DocumentData> {
     const getAllQuerySnapshot: admin.firestore.QuerySnapshot = await this._firestore.collection(this.collectionName).get();
     let result: Array<admin.firestore.DocumentData> = [];
     if (!getAllQuerySnapshot.empty) {
-      const allData: Array<admin.firestore.DocumentData> = getAllQuerySnapshot.docs.map(docSnapshot => docSnapshot.data());
+      const allData: Array<admin.firestore.DocumentData> = getAllQuerySnapshot.docs.map(docSnapshot => {         
+        const data = docSnapshot.data();
+        const _item: admin.firestore.DocumentData = {
+          id: docSnapshot.id,
+          ...data
+        };
+        return _item;
+      });
       result = allData;
     }
     return result;
