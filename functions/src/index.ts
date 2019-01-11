@@ -3,6 +3,7 @@ import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 
 import { ItemsRouter } from './items';
+import { OrdersRouter } from './orders';
 import { authenticate } from './middlewares';
 
 import { doCreateUserInfo } from './triggers/auth/sign-up.trigger';
@@ -20,6 +21,7 @@ app.use(authenticate);
 
 // TODO: Add more required routes
 app.use(`/items`, ItemsRouter);
+app.use('/orders', OrdersRouter);
 
 // Expose the Express API Routes as functions
 export const api = functions.https.onRequest(app);
