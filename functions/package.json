@@ -6,7 +6,8 @@
     "serve": "npm run build && firebase serve --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
-    "deploy": "firebase deploy --only functions && rimraf ./lib",
+    "deploy": "firebase deploy --only functions",
+    "postdeploy": "rimraf ./lib",
     "deploydev": "firebase use --add development && npm run deploy",
     "logs": "firebase functions:log",
     "test": "jest --coverage"
